@@ -1,0 +1,9 @@
+Create IPL tournament schedule. 
+
+Total 8 teams
+One match everyday
+Each team plays against the opponent exactly twice. So each team plays total of 14 matches
+No team should have a match on adjacent days
+
+Difficult Level
+There should be 2 matches every weekend
