@@ -34,18 +34,19 @@ const App = () => {
         //   console.log(match);
         //   // console.log("No");
         // }
-        matchSchedule.push({
-          day: days[daysIndex],
-          match,
-        });
-        //   if (daysIndex == 5 || daysIndex == 6) {
-        //     matchSchedule.push({
-        //       day: days[daysIndex],
-        //       match,
-        //       match2: `${teams[i]} v/s ${teams[j]}`,
-        //     });
-        //   } else {
-        //   }
+
+        if (daysIndex == 5 || daysIndex == 6) {
+          matchSchedule.push({
+            day: days[daysIndex],
+            match,
+            match2: `${teams[i]} v/s ${teams[j]}`,
+          });
+        } else {
+          matchSchedule.push({
+            day: days[daysIndex],
+            match,
+          });
+        }
       }
     }
   }
@@ -78,8 +79,30 @@ const App = () => {
       <table style={{ border: "1px solid #fff", width: "100%" }}>
         <thead>
           <tr>
-            <td style={{ border: "1px solid #fff", padding: "10px" }}>Day</td>
-            <td style={{ border: "1px solid #fff", padding: "10px" }}>Match</td>
+            <td
+              style={{
+                border: "1px solid #fff",
+                padding: "10px",
+              }}
+            >
+              Day
+            </td>
+            <td
+              style={{
+                border: "1px solid #fff",
+                padding: "10px",
+              }}
+            >
+              Match 1
+            </td>
+            <td
+              style={{
+                border: "1px solid #fff",
+                padding: "10px",
+              }}
+            >
+              Match 2
+            </td>
           </tr>
         </thead>
         <tbody>
@@ -101,6 +124,14 @@ const App = () => {
                   }}
                 >
                   {items.match}
+                </td>
+                <td
+                  style={{
+                    border: "1px solid #fff",
+                    padding: "10px",
+                  }}
+                >
+                  {items.match2}
                 </td>
               </tr>
             );
