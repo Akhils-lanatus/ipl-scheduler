@@ -44,23 +44,23 @@ const App = () => {
     if (i === totalMatches) {
       return 0;
     }
-    console.log(
-      nonShuffledTeams[i2].team1,
-      "!==",
-      nonShuffledTeams[i - 1].team1,
-      "&&",
-      nonShuffledTeams[i2].team1,
-      "!==",
-      nonShuffledTeams[i - 1].team2,
-      "&&",
-      nonShuffledTeams[i2].team2,
-      "!==",
-      nonShuffledTeams[i - 1].team1,
-      "&&",
-      nonShuffledTeams[i2].team2,
-      "!==",
-      nonShuffledTeams[i - 1].team2
-    );
+    // console.log(
+    //   nonShuffledTeams[i2].team1,
+    //   "!==",
+    //   nonShuffledTeams[i - 1].team1,
+    //   "&&",
+    //   nonShuffledTeams[i2].team1,
+    //   "!==",
+    //   nonShuffledTeams[i - 1].team2,
+    //   "&&",
+    //   nonShuffledTeams[i2].team2,
+    //   "!==",
+    //   nonShuffledTeams[i - 1].team1,
+    //   "&&",
+    //   nonShuffledTeams[i2].team2,
+    //   "!==",
+    //   nonShuffledTeams[i - 1].team2
+    // );
     if (
       nonShuffledTeams[i2].team1 !== nonShuffledTeams[i - 1].team1 &&
       nonShuffledTeams[i2].team1 !== nonShuffledTeams[i - 1].team2 &&
@@ -78,19 +78,20 @@ const App = () => {
       finalArray.push(nonShuffledTeams[i]);
     } else {
       let selectedMatch = getMatch(i, i);
+      console.log(nonShuffledTeams[selectedMatch]);
 
-      let temp1 = nonShuffledTeams[selectedMatch].team1;
-      let temp2 = nonShuffledTeams[selectedMatch].team2;
-      nonShuffledTeams[selectedMatch].team1 = nonShuffledTeams[i].team1;
-      nonShuffledTeams[selectedMatch].team2 = nonShuffledTeams[i].team2;
-      nonShuffledTeams[i].team1 = temp1;
-      nonShuffledTeams[i].team2 = temp2;
+      // let temp1 = nonShuffledTeams[selectedMatch].team1;
+      // let temp2 = nonShuffledTeams[selectedMatch].team2;
+      // nonShuffledTeams[selectedMatch].team1 = nonShuffledTeams[i].team1;
+      // nonShuffledTeams[selectedMatch].team2 = nonShuffledTeams[i].team2;
+      // nonShuffledTeams[i].team1 = temp1;
+      // nonShuffledTeams[i].team2 = temp2;
 
-      finalArray.push({
-        day: nonShuffledTeams[i].day,
-        team1: nonShuffledTeams[selectedMatch].team1,
-        team2: nonShuffledTeams[selectedMatch].team2,
-      });
+      // finalArray.push({
+      //   day: nonShuffledTeams[i].day,
+      //   team1: nonShuffledTeams[selectedMatch].team1,
+      //   team2: nonShuffledTeams[selectedMatch].team2,
+      // });
     }
   }
 
