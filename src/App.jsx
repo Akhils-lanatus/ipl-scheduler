@@ -44,6 +44,23 @@ const App = () => {
     if (i === totalMatches) {
       return 0;
     }
+    console.log(
+      nonShuffledTeams[i2].team1,
+      "!==",
+      nonShuffledTeams[i - 1].team1,
+      "&&",
+      nonShuffledTeams[i2].team1,
+      "!==",
+      nonShuffledTeams[i - 1].team2,
+      "&&",
+      nonShuffledTeams[i2].team2,
+      "!==",
+      nonShuffledTeams[i - 1].team1,
+      "&&",
+      nonShuffledTeams[i2].team2,
+      "!==",
+      nonShuffledTeams[i - 1].team2
+    );
     if (
       nonShuffledTeams[i2].team1 !== nonShuffledTeams[i - 1].team1 &&
       nonShuffledTeams[i2].team1 !== nonShuffledTeams[i - 1].team2 &&
