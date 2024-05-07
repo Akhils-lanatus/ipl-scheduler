@@ -35,7 +35,7 @@ const App = () => {
   for (let i = 0; i < totalMatches; i++) {
     let matchPosition = getMatchDayIndex();
     let dayIndex = matchSchedule.length % 7;
-    matchSchedule.push({ day: days[dayIndex], matchPosition });
+    // matchSchedule.push({ day: days[dayIndex], matchPosition });
   }
 
   return <div>App</div>;
