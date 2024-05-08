@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 const App = () => {
   let [teams] = useState([
@@ -22,9 +22,6 @@ const App = () => {
   ]);
 
   let totalMatches = teams.length * (teams.length - 1);
-  const matchSchedule = [];
-  let previousMatchChecker = [];
-  let testCounter = 0;
 
   const nonShuffledTeams = [];
   for (let i = 0; i < teams.length; i++) {
@@ -39,61 +36,99 @@ const App = () => {
       }
     }
   }
-  let finalArray = [];
-  const getMatch = (i, i2) => {
-    if (i === totalMatches) {
+
+  const getMatch = (currentIndex, previousIndex) => {
+    if (currentIndex >= totalMatches) {
       return 0;
     }
-    // console.log(
-    //   nonShuffledTeams[i2].team1,
-    //   "!==",
-    //   nonShuffledTeams[i - 1].team1,
-    //   "&&",
-    //   nonShuffledTeams[i2].team1,
-    //   "!==",
-    //   nonShuffledTeams[i - 1].team2,
-    //   "&&",
-    //   nonShuffledTeams[i2].team2,
-    //   "!==",
-    //   nonShuffledTeams[i - 1].team1,
-    //   "&&",
-    //   nonShuffledTeams[i2].team2,
-    //   "!==",
-    //   nonShuffledTeams[i - 1].team2
-    // );
     if (
-      nonShuffledTeams[i2].team1 !== nonShuffledTeams[i - 1].team1 &&
-      nonShuffledTeams[i2].team1 !== nonShuffledTeams[i - 1].team2 &&
-      nonShuffledTeams[i2].team2 !== nonShuffledTeams[i - 1].team1 &&
-      nonShuffledTeams[i2].team2 !== nonShuffledTeams[i - 1].team2
+      nonShuffledTeams[currentIndex].team1 !==
+        nonShuffledTeams[previousIndex].team1 &&
+      nonShuffledTeams[currentIndex].team1 !==
+        nonShuffledTeams[previousIndex].team2 &&
+      nonShuffledTeams[currentIndex].team2 !==
+        nonShuffledTeams[previousIndex].team1 &&
+      nonShuffledTeams[currentIndex].team2 !==
+        nonShuffledTeams[previousIndex].team2
     ) {
-      return i - 1;
+      console.log(currentIndex);
+      return currentIndex;
     } else {
-      return getMatch(i + 1, i2);
+      return getMatch(currentIndex + 1, previousIndex);
     }
   };
 
   for (let i = 0; i < totalMatches; i++) {
-    if (i == 0) {
-      finalArray.push(nonShuffledTeams[i]);
-    } else {
-      let selectedMatch = getMatch(i, i);
-      console.log(nonShuffledTeams[selectedMatch]);
-
-      // let temp1 = nonShuffledTeams[selectedMatch].team1;
-      // let temp2 = nonShuffledTeams[selectedMatch].team2;
-      // nonShuffledTeams[selectedMatch].team1 = nonShuffledTeams[i].team1;
-      // nonShuffledTeams[selectedMatch].team2 = nonShuffledTeams[i].team2;
-      // nonShuffledTeams[i].team1 = temp1;
-      // nonShuffledTeams[i].team2 = temp2;
-
-      // finalArray.push({
-      //   day: nonShuffledTeams[i].day,
-      //   team1: nonShuffledTeams[selectedMatch].team1,
-      //   team2: nonShuffledTeams[selectedMatch].team2,
-      // });
+    if (i > 0) {
+      let ind = getMatch(i, i - 1);
+      let temp1 = nonShuffledTeams[i].team1;
+      let temp2 = nonShuffledTeams[i].team2;
+      nonShuffledTeams[i].team2 = nonShuffledTeams[ind].team1;
+      nonShuffledTeams[i].team1 = nonShuffledTeams[ind].team2;
+      nonShuffledTeams[ind].team1 = temp1;
+      nonShuffledTeams[ind].team2 = temp2;
     }
   }
+
+  let finalArray = [];
+  const matchSchedule = [];
+  let previousMatchChecker = [];
+  let testCounter = 0;
+
+  // const getMatch = (i, i2) => {
+  //   if (i === totalMatches) {
+  //     return 0;
+  //   }
+  //   // console.log(
+  //   //   nonShuffledTeams[i2].team1,
+  //   //   "!==",
+  //   //   nonShuffledTeams[i - 1].team1,
+  //   //   "&&",
+  //   //   nonShuffledTeams[i2].team1,
+  //   //   "!==",
+  //   //   nonShuffledTeams[i - 1].team2,
+  //   //   "&&",
+  //   //   nonShuffledTeams[i2].team2,
+  //   //   "!==",
+  //   //   nonShuffledTeams[i - 1].team1,
+  //   //   "&&",
+  //   //   nonShuffledTeams[i2].team2,
+  //   //   "!==",
+  //   //   nonShuffledTeams[i - 1].team2
+  //   // );
+  //   if (
+  //     nonShuffledTeams[i2].team1 !== nonShuffledTeams[i - 1].team1 &&
+  //     nonShuffledTeams[i2].team1 !== nonShuffledTeams[i - 1].team2 &&
+  //     nonShuffledTeams[i2].team2 !== nonShuffledTeams[i - 1].team1 &&
+  //     nonShuffledTeams[i2].team2 !== nonShuffledTeams[i - 1].team2
+  //   ) {
+  //     return i - 1;
+  //   } else {
+  //     return getMatch(i + 1, i2);
+  //   }
+  // };
+
+  // for (let i = 0; i < totalMatches; i++) {
+  //   if (i == 0) {
+  //     finalArray.push(nonShuffledTeams[i]);
+  //   } else {
+  //     let selectedMatch = getMatch(i, i);
+  //     console.log(nonShuffledTeams[selectedMatch]);
+
+  //     let temp1 = nonShuffledTeams[selectedMatch].team1;
+  //     let temp2 = nonShuffledTeams[selectedMatch].team2;
+  //     nonShuffledTeams[selectedMatch].team1 = nonShuffledTeams[i].team1;
+  //     nonShuffledTeams[selectedMatch].team2 = nonShuffledTeams[i].team2;
+  //     nonShuffledTeams[i].team1 = temp1;
+  //     nonShuffledTeams[i].team2 = temp2;
+
+  // finalArray.push({
+  //   day: nonShuffledTeams[i].day,
+  //   team1: nonShuffledTeams[selectedMatch].team1,
+  //   team2: nonShuffledTeams[selectedMatch].team2,
+  // });
+  //   }
+  // }
 
   // console.log(teams);
   // console.log(finalArray);
@@ -166,6 +201,8 @@ const App = () => {
   //   });
   // }
 
+  //day-3 8-5-24
+
   //consoles
   // console.log(nonShuffledTeams, "NST");
   // console.log(matchSchedule, "ST");
@@ -183,15 +220,15 @@ const App = () => {
       <table>
         <thead>
           <tr>
-            <td>Day</td>
-            <td>Match</td>
+            <td style={{ padding: "10px" }}>DAY</td>
+            <td style={{ padding: "10px" }}>MATCH</td>
           </tr>
         </thead>
         <tbody>
-          {finalArray.map((items, i) => (
+          {nonShuffledTeams.map((items, i) => (
             <tr key={i}>
               <td>{items?.day}</td>
-              <td>
+              <td style={{ padding: "10px" }}>
                 {items?.team1} v/s {items?.team2}
               </td>
             </tr>
