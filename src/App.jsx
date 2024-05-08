@@ -51,7 +51,6 @@ const App = () => {
       nonShuffledTeams[currentIndex].team2 !==
         nonShuffledTeams[previousIndex].team2
     ) {
-      console.log(currentIndex);
       return currentIndex;
     } else {
       return getMatch(currentIndex + 1, previousIndex);
@@ -63,17 +62,17 @@ const App = () => {
       let ind = getMatch(i, i - 1);
       let temp1 = nonShuffledTeams[i].team1;
       let temp2 = nonShuffledTeams[i].team2;
-      nonShuffledTeams[i].team2 = nonShuffledTeams[ind].team1;
-      nonShuffledTeams[i].team1 = nonShuffledTeams[ind].team2;
+      nonShuffledTeams[i].team1 = nonShuffledTeams[ind].team1;
+      nonShuffledTeams[i].team2 = nonShuffledTeams[ind].team2;
       nonShuffledTeams[ind].team1 = temp1;
       nonShuffledTeams[ind].team2 = temp2;
     }
   }
 
-  let finalArray = [];
-  const matchSchedule = [];
-  let previousMatchChecker = [];
-  let testCounter = 0;
+  // let finalArray = [];
+  // const matchSchedule = [];
+  // let previousMatchChecker = [];
+  // let testCounter = 0;
 
   // const getMatch = (i, i2) => {
   //   if (i === totalMatches) {
@@ -221,7 +220,7 @@ const App = () => {
         <thead>
           <tr>
             <td style={{ padding: "10px" }}>DAY</td>
-            <td style={{ padding: "10px" }}>MATCH</td>
+            <td style={{ padding: "10px" }}>MATCH 1</td>
           </tr>
         </thead>
         <tbody>
